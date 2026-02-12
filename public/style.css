@@ -1,0 +1,573 @@
+/* === Reset & Base === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #aaa;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* === Top Navigation === */
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 52px;
+  background: #111111;
+  border-bottom: 1px solid #1e1e1e;
+  flex-shrink: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.top-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-right: 16px;
+  border-right: 1px solid #222;
+  margin-right: 8px;
+  cursor: default;
+}
+
+.nav-logo-icon {
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.nav-logo-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ccc;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #777;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.nav-tab:hover {
+  color: #bbb;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-tab.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.nav-tab.active .nav-icon {
+  opacity: 1;
+}
+
+/* === Pages === */
+.page {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page.active {
+  display: flex;
+}
+
+/* === Office Page (retro pixel art) === */
+.office-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  color: #00FF41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  letter-spacing: 2px;
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: #FF4444;
+  animation: blink 1s step-end infinite;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: #FF4444;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #FF4444;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* === Canvas Area === */
+.canvas-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  min-height: 0;
+}
+
+.canvas-container {
+  position: relative;
+  max-width: 960px;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#office-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-image-rendering: crisp-edges;
+  border: 2px solid #333;
+  border-radius: 6px;
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 0.15),
+    0 0 30px rgba(0, 255, 255, 0.08),
+    0 0 15px rgba(255, 0, 255, 0.1),
+    0 0 30px rgba(255, 0, 255, 0.05),
+    inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Scanline overlay */
+.canvas-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+/* === Status Bar === */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 16px;
+  background: #111;
+  border-top: 1px solid #222;
+  flex-shrink: 0;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-label {
+  color: #555;
+}
+
+.connection-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #555;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.connection-dot.connected {
+  background: #00FF41;
+  box-shadow: 0 0 6px #00FF41;
+}
+
+.connection-dot.disconnected {
+  background: #FF4444;
+  box-shadow: 0 0 6px #FF4444;
+}
+
+#connection-text {
+  color: #555;
+  transition: color 0.3s;
+}
+
+#connection-text.connected {
+  color: #00FF41;
+}
+
+#connection-text.disconnected {
+  color: #FF4444;
+}
+
+#event-counter,
+#active-agents {
+  color: #00FF41;
+}
+
+#current-time {
+  color: #00ffff;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.3);
+}
+
+/* ============================================
+   ORG CHART PAGE
+   ============================================ */
+
+.org-page {
+  flex: 1;
+  overflow: auto;
+  padding: 40px 20px 60px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+    #0a0a0a;
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: fit-content;
+  padding: 0 20px;
+}
+
+/* === Org Node (recursive wrapper) === */
+.org-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === Org Card === */
+.org-card {
+  width: 280px;
+  background: rgba(20, 20, 28, 0.9);
+  border: 1px solid var(--card-color, #333);
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.3),
+    0 0 40px color-mix(in srgb, var(--card-color) 8%, transparent);
+}
+
+.org-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 50px color-mix(in srgb, var(--card-color) 15%, transparent);
+}
+
+/* Card header: icon + name/title + status */
+.org-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.org-card-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--card-color) 15%, #141420);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--card-color);
+}
+
+.org-card-avatar svg {
+  width: 22px;
+  height: 22px;
+}
+
+.org-card-identity {
+  flex: 1;
+  min-width: 0;
+}
+
+.org-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #eee;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.org-card-role {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Status dot */
+.org-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.org-status-dot.online {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.org-status-dot.working {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+  animation: status-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+  }
+}
+
+.org-status-dot.inactive {
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+.org-status-dot.done {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.org-status-dot.away {
+  background: #eab308;
+  box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+}
+
+.org-status-dot.offline {
+  background: #666;
+  box-shadow: none;
+}
+
+/* Card details: model + cost */
+.org-card-details {
+  margin-bottom: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.org-card-model {
+  font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.org-card-cost {
+  font-size: 12px;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cost-arrow {
+  color: var(--card-color, #666);
+  font-size: 16px;
+}
+
+.org-card-task {
+  font-size: 12px;
+  color: #22c55e;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-style: italic;
+}
+
+/* Card tags */
+.org-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.org-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.org-tag-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+}
+
+/* === Connectors === */
+.org-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 48px;
+  position: relative;
+}
+
+.org-connector-line {
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(to bottom, #333, #444);
+}
+
+.org-connector-chevron {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 16px;
+  background: #141420;
+  border: 1px solid #2a2a3a;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* === Children container (multiple children) === */
+.org-children {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.org-children-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Horizontal branch line connecting children */
+.org-children-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 140px;
+  right: 140px;
+  height: 1px;
+  background: #333;
+}
+
+.org-child-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.org-drop-line {
+  width: 1px;
+  height: 24px;
+  background: #333;
+}
+
+/* === Placeholder page messages === */
+.page-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  font-size: 14px;
+  font-weight: 500;
+}

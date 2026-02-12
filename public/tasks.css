@@ -1,0 +1,540 @@
+/* Tasks - Kanban Board Styles */
+
+.tasks-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.tasks-page-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.tasks-page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #eee;
+}
+
+.tasks-page-count {
+  font-size: 14px;
+  color: #555;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.tasks-new-btn {
+  background: #3B82F6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.tasks-new-btn:hover {
+  background: #2563eb;
+}
+
+/* Board layout */
+
+.tasks-board {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+  overflow-x: auto;
+}
+
+/* Columns */
+
+.tasks-column {
+  flex: 1;
+  min-width: 260px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.tasks-col-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.tasks-col-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tasks-col-dot.todo {
+  background: #F59E0B;
+}
+
+.tasks-col-dot.in_progress {
+  background: #3B82F6;
+}
+
+.tasks-col-dot.done {
+  background: #22c55e;
+}
+
+.tasks-col-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #aaa;
+  margin: 0;
+}
+
+.tasks-col-count {
+  font-size: 12px;
+  color: #555;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+/* Scrollable card list */
+
+.tasks-col-cards {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.tasks-col-cards::-webkit-scrollbar {
+  width: 4px;
+}
+
+.tasks-col-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tasks-col-cards::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Task cards */
+
+.task-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: default;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.task-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.task-card.dragging {
+  opacity: 0.5;
+}
+
+.task-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/* Priority badges */
+
+.task-priority {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.task-priority.high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.task-priority.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+}
+
+.task-priority.low {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+/* Delete button */
+
+.task-card-delete {
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.task-card-delete:hover {
+  color: #ef4444;
+}
+
+/* Card content */
+
+.task-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ddd;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.task-card-desc {
+  font-size: 12px;
+  color: #777;
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card footer */
+
+.task-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-card-date {
+  font-size: 11px;
+  color: #555;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.task-card-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.task-move-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid #2a2a3a;
+  background: transparent;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.task-move-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #aaa;
+}
+
+/* Modal overlay */
+
+.tasks-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.tasks-modal {
+  background: #141420;
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 28px;
+  width: 440px;
+  max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.tasks-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #eee;
+  margin: 0 0 20px 0;
+}
+
+.tasks-modal-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #eee;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  margin-bottom: 12px;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.tasks-modal-input:focus {
+  border-color: #3B82F6;
+}
+
+.tasks-modal-input::placeholder {
+  color: #555;
+}
+
+.tasks-modal-textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #eee;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  margin-bottom: 12px;
+  transition: border-color 0.15s;
+  resize: vertical;
+  min-height: 70px;
+  box-sizing: border-box;
+}
+
+.tasks-modal-textarea:focus {
+  border-color: #3B82F6;
+}
+
+.tasks-modal-textarea::placeholder {
+  color: #555;
+}
+
+.tasks-modal-row {
+  margin-bottom: 16px;
+}
+
+.tasks-modal-label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Priority toggle buttons */
+
+.tasks-priority-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.priority-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #2a2a3a;
+  background: transparent;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: "Inter", sans-serif;
+}
+
+.priority-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.priority-btn.active.low {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.priority-btn.active.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.priority-btn.active.high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Modal actions */
+
+.tasks-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.tasks-modal-cancel {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #2a2a3a;
+  background: transparent;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: background 0.15s;
+}
+
+.tasks-modal-cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tasks-modal-save {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #3B82F6;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: background 0.15s;
+}
+
+.tasks-modal-save:hover {
+  background: #2563eb;
+}
+
+/* Empty state */
+
+.tasks-empty {
+  text-align: center;
+  color: #444;
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+/* Due date on task cards */
+
+.task-card-due {
+  font-size: 11px;
+  color: #3B82F6;
+  font-family: "JetBrains Mono", monospace;
+  cursor: pointer;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(59, 130, 246, 0.1);
+  transition: all 0.15s;
+}
+
+.task-card-due:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.task-due-overdue {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.task-due-overdue:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Overdue task card border */
+
+.task-overdue {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Task highlight animation (cross-nav) */
+
+.task-highlight {
+  animation: task-pulse 2s ease-out;
+}
+
+@keyframes task-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  30% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Date picker in modal */
+
+.tasks-modal-date {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #eee;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+
+.tasks-modal-date:focus {
+  border-color: #3B82F6;
+}
+
+/* Header row layout fix */
+
+.tasks-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tasks-total-count {
+  font-size: 14px;
+  color: #555;
+  font-weight: 400;
+  margin-left: 8px;
+}

@@ -1,0 +1,6 @@
+node_modules/
+.state.json
+server.log
+*.log
+.DS_Store
+.claude/
